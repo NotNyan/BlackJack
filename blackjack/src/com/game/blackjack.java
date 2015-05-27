@@ -66,9 +66,65 @@ public class blackjack {
    				 deck[0] = cardValue[12];
   				 deckName[0] = cards[12];
   				 break;
-   		 }
-   		 
+   		 }	 
+    	
+    	rndm = new Random().nextInt(13)+1;		 
+  		 switch (rndm){
+  			 case 1:
+  				 deck[1] = cardValue[0];
+  				 deckName[1] = cards[0];
+  				 break;
+  			 case 2:
+  				 deck[1] = cardValue[1];
+  				 deckName[1] = cards[1];
+  				 break;
+  			 case 3:
+  				 deck[1] = cardValue[2];
+  				 deckName[1] = cards[2];
+  				 break;
+  			 case 4:
+  				 deck[1] = cardValue[3];
+  				 deckName[1] = cards[3];
+  				 break;
+  			 case 5:
+  				 deck[1] = cardValue[4];
+  				 deckName[1] = cards[4];
+  				 break;
+  			 case 6:
+  				 deck[1] = cardValue[5];
+  				 deckName[1] = cards[5];
+  				 break;
+  			 case 7:
+  				 deck[1] = cardValue[6];
+  				 deckName[1] = cards[6];
+  				 break;
+  			 case 8:
+  				 deck[1] = cardValue[7];
+  				 deckName[1] = cards[7];
+  				 break;
+  			 case 9:
+  				 deck[1] = cardValue[8];
+  				 deckName[1] = cards[8];
+  				 break;
+  			 case 10:
+  				 deck[1] = cardValue[9];
+  				 deckName[1] = cards[9];
+  				 break;
+  			 case 11:
+  				 deck[1] = cardValue[10];
+  				 deckName[1] = cards[10];
+  				 break;
+  			 case 12:
+  				 deck[1] = cardValue[11];
+  				 deckName[1] = cards[11];
+  				 break;
+  			 case 13:
+  				 deck[1] = cardValue[12];
+ 				 deckName[1] = cards[12];
+ 				 break;
+  		 }	 
     	}
+    	
 	}
     
 	public void checkDeck(){
