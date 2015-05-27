@@ -3,6 +3,7 @@ import java.util.*;
 public class blackjack {
     static Random random = new Random();
     static int rndm;
+    static int playerTotal;
     //maxDeckSize
 	static int deck[] = new int[5];
 	static String deckName[] = new String[5];
@@ -122,13 +123,19 @@ public class blackjack {
   				 deck[1] = cardValue[12];
  				 deckName[1] = cards[12];
  				 break;
-  		 }	 
+  		 }
+ 		//If Your first and second were both aces it would make your total 12.
+ 		if ((deck[0] == 11) && (deck[1] == 11)){playerTotal = 12; checkDeck();}
+ 		playerTotal = deck[0] + deck[1];
+  		 checkDeck();
     	}
     	
 	}
     
-	public void checkDeck(){
-   	 
+	public static void checkDeck(){ 
+		if (playerTotal == 21){System.out.println("You win!");}
+		else{System.out.println("Your total is total is: "+playerTotal);}
+		
 	}
     
 	public void hit(){
@@ -142,6 +149,7 @@ public class blackjack {
 	public static void main(String[] args){
     	draw();
     	System.out.println(deckName[0] +" "+ deck[0]);
+    	System.out.println(deckName[1] +" "+ deck[1]);
 	}
 }
 
