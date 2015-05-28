@@ -1,6 +1,8 @@
 package com.game;
 import java.util.*;
 public class blackjack {
+	static Scanner input = new Scanner(System.in);
+	
 	static Random random = new Random();
 	static boolean testMode = true;
     static int rndm;
@@ -151,12 +153,15 @@ public class blackjack {
 	}
     
 	public static void main(String[] args){
+		String response;
     	draw();
-    	if (testMode){
+    	if(testMode){
     	System.out.println(playerDeckName[0] +" "+ playerDeck[0]);
     	System.out.println(playerDeckName[1] +" "+ playerDeck[1]);
     	}
-	}
+    	System.out.println("Would you like to "+"Hit"+" or "+"Stay"+"?");
+    	response =  input.nextLine();
+    }
 }
 
 
