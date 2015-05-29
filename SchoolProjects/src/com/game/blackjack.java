@@ -7,10 +7,11 @@ public class blackjack {
 	static boolean win = false;
 	static boolean lose = false;
 	static boolean busted = false;
+	static boolean dealer_busted = false;
 	static int player_last_number = 0;
 	static int dealer_last_number = 0;
 	static Random random = new Random();
-	static boolean testMode = true;
+	static boolean testMode = false; //TEST MODE KEEP FALSE UNLESS TESTING
     static int rndm;
     static int playerTotal;
     static int dealerTotal;
@@ -140,7 +141,7 @@ public class blackjack {
   		playerTotal = playerDeck[0] + playerDeck[1];
  		//If Your first and second were both aces it would make your total 12.
  		if ((playerDeck[0] == 11) && (playerDeck[1] == 11)){playerTotal = 12;}
- 		if (playerTotal == 21){System.out.println("You win!"); win = true;}
+ 		if (playerTotal == 21){System.out.println("You win!"); win = true; question = false;}
 
   		 
   		rndm = new Random().nextInt(13)+1;	
@@ -198,6 +199,7 @@ public class blackjack {
  				 dealerDeckName[0] = cards[12];
  				 break;
   		 }	 
+  		 
    	
    	rndm = new Random().nextInt(13)+1;		 
  		 switch (rndm){
@@ -254,7 +256,10 @@ public class blackjack {
 				 dealerDeckName[1] = cards[0];
 				 break;
  		 }
+ 		if (win){System.out.println("The dealer drew a "+dealerDeck[0]+" and a "+dealerDeck[1]);}
     	}
+    	dealerTotal += dealerDeck[0] + dealerDeck[1];
+    	dealer_last_number = 1;
     	
     	
     	
@@ -264,8 +269,8 @@ public class blackjack {
 		if (playerTotal == dealerTotal){System.out.println("You guys tied. The dealer wins!"); lose = true;}
 	    else if (playerTotal == 21){System.out.println("You win!"); win = true;}
 	    else if (playerTotal >= 22){System.out.println("You Busted..."); busted = true;}
-	    else if (playerTotal > dealerTotal){System.out.println("You scored higher than the dealer!, You win!"); win = true;}	    
-	    else if (dealerTotal > 21){System.out.println("Dealer busted. You win!"); win = true;}
+	    else if (playerTotal > dealerTotal){System.out.println("You scored higher than the dealer!, You win!"); win = true; dealer_busted = true;}	    
+	    else if (dealerTotal > 21){System.out.println("Dealer busted. You win!"); win = true; dealer_busted = true;}
 	    else if (dealerTotal > playerTotal){System.out.println("Dealer scored closer than you!,You lose!"); lose = true;}    	
 		else{System.out.println("Your total is total is: "+playerTotal);}
 		
@@ -337,6 +342,7 @@ public class blackjack {
     
 	public static void stand(){
    	 	do {
+   	 		if(dealerTotal <= 16){
    	 		dealer_last_number++;
    	 		//about to draw :-)
    	  		rndm = new Random().nextInt(13)+1;	
@@ -395,6 +401,7 @@ public class blackjack {
     				 break;
      		 }	
      		 dealerTotal += dealerDeck[dealer_last_number];
+   	 		}
    	 	}while (dealerTotal <= 16);
    	 	checkDeck();
    	 	if (lose || win){question = false;}
@@ -416,14 +423,17 @@ public class blackjack {
     
 	public static void main(String[] args){
 		String response;
-    	draw();
+		question = true;
+    	draw();	
+    	System.out.println("You drew a "+playerDeck[0]+" and a "+playerDeck[1]);
+    	System.out.println("Your total is: "+playerTotal);
+    	if(!win){System.out.println("The dealer has a "+playerDeck[0]+ " showing and a Hidden card.");}
     	if(testMode){
     	System.out.println(playerDeckName[0] +" "+ playerDeck[0]);
     	System.out.println(playerDeckName[1] +" "+ playerDeck[1]);
     	System.out.println(dealerDeckName[0] +" "+ dealerDeck[0]);
     	System.out.println(dealerDeckName[1] +" "+ dealerDeck[1]);
     	}
-    	question = true;
     	while (question){
     	System.out.println("Would you like to \"Hit\" or \"Stay\"?");
     	response =  input.nextLine();
@@ -440,6 +450,8 @@ public class blackjack {
     		break;
     	}
     	}
+    	if (dealer_busted){System.out.println("The dealer's last card that made him bust was \n"+dealerDeck[dealer_last_number]+ " and his hidden card was: "+dealerDeck[1]);}
+    	if (dealer_busted){System.out.println("Dealers total:" +dealerTotal);}
     }
 	}
 
